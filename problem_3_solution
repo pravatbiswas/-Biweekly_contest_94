@@ -1,0 +1,23 @@
+def min_max_int(divisor1, divisor2, uniqueCnt1, uniqueCnt2):
+    # Initialize the maximum integer to the maximum possible value
+    max_int = float('inf')
+
+    # Check if we can add uniqueCnt1 integers to arr1
+    if uniqueCnt1 > 0:
+        # Find the minimum integer that is not divisible by divisor1
+        min_int1 = divisor1 * (uniqueCnt1 - 1) + 1
+        max_int = min(max_int, min_int1)
+
+    # Check if we can add uniqueCnt2 integers to arr2
+    if uniqueCnt2 > 0:
+        # Find the minimum integer that is not divisible by divisor2
+        min_int2 = divisor2 * (uniqueCnt2 - 1) + 1
+        max_int = min(max_int, min_int2)
+
+    # Check if we can add uniqueCnt1 and uniqueCnt2 integers to arr1 and arr2, respectively
+    if uniqueCnt1 > 0 and uniqueCnt2 > 0:
+        # Find the minimum integer that is not divisible by divisor1 or divisor2
+        min_int3 = max(divisor1, divisor2) * (uniqueCnt1 + uniqueCnt2 - 2) + 1
+        max_int = min(max_int, min_int3)
+
+    return max_int
