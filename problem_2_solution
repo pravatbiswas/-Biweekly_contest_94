@@ -1,0 +1,28 @@
+def top_students(positive_feedback, negative_feedback, report, student_id, k):
+    # Initialize a dictionary to store the points of each student
+    student_points = {}
+
+    # Iterate through the feedback reports
+    for i, r in enumerate(report):
+        # Get the student's ID
+        sid = student_id[i]
+
+        # Split the report into words
+        words = r.split()
+
+        # Initialize the points for the student if necessary
+        if sid not in student_points:
+            student_points[sid] = 0
+
+        # Update the points for the student based on the feedback
+        for w in words:
+            if w in positive_feedback:
+                student_points[sid] += 3
+            elif w in negative_feedback:
+                student_points[sid] -= 1
+
+    # Sort the students by their points in non-increasing order
+    sorted_students = sorted(student_points.items(), key=lambda x: (-x[1], x[0]))
+
+    # Return the top k students
+    return sorted_students[:k]
